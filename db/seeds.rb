@@ -7,3 +7,7 @@ User.create({name: "Juan", username: "juan", email: "juan@email.com", password: 
 UserFollowing.create(user_id: 1, user_following_id: 2)
 
 UserFollowing.create(user_id: 1, user_following_id: 3)
+
+Squeak.create(content: "First squeak from Juan", user_id: 3)
+
+Squeak.create(content: "Second squeak from Juan", user_id: 3)
