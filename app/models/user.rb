@@ -20,13 +20,12 @@ class User < ActiveRecord::Base
 
     follow.each do |followed|
     	User.find(followed.user_following_id).squeaks.each do |squeak|
-    		list_of_squeaks << squeak
+    		list_of_squeaks << squeak.content
     	end
    	end
 
-    list_of_squeaks.content
+    list_of_squeaks
 
-    # list_of_squeaks#.sort_by(&:create_at).reverse
   end
 
 
