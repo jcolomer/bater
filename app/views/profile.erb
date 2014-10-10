@@ -1,18 +1,21 @@
+
+<%= erb :nav, locals: {id: @user.id} %>
 <div class="container">
 <!-- show followers and followings
 show your squeaks
 show your profile (name, username, gravatar)
  -->
-<table>
+<table class="user-info">
 <tr><%= @user.name %> </tr></br>
-<tr><%= @user.username %> </tr>
+<tr>@<%= @user.username %> </tr>
 </table>
 
-<div>
-  <% @hash = Digest::MD5.hexdigest(session[:email]) %>
+<% @hash = Digest::MD5.hexdigest(@user_email) %>
+<% if @hash %>
+<div class="gravatar">
+  <img src="http://www.gravatar.com/avatar/<%= @hash %>"/>
 </div>
-
-<img src="http://www.gravatar.com/avatar/<%= @hash %>.png"/>
+<% end %>
 
 <ul>
 <% @user.squeaks.each do |squeak| %>
@@ -20,11 +23,13 @@ show your profile (name, username, gravatar)
 <% end %>
 </ul>
 
+<%# if session[:user_id] != @user.id %>
 <h2>Squeak yourself</h2>
 <form action="/users/<%= @user.id %>/profile" method="post">
   <textarea rows="4" cols="50" name="content"></textarea><br>
   <input type="submit" value="Create">
 </form>
+<%# end %>
 
 <a href="/users/<%= @user.id %>/followers">Followers</a>
 <a href="/users/<%= @user.id %>/following">Following</a>
