@@ -30,8 +30,8 @@ post '/sessions' do
     session[:user_id] == user.id
     session[:email] == params[:email]
     erb :feed
-  # else
-  #   redirect '/sessions/new?invalid=true'
+  else
+    redirect '/sessions/new?invalid=true'
   end
 end
 
