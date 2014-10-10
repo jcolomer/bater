@@ -1,0 +1,41 @@
+<div class="container">
+  <h1>Log in</h1>
+
+  <% if @sign_in_error %>
+    <div class="errors"><%= @sign_in_error %></div>
+  <% end %>
+
+  <form id="sign-in" method="post" action="/sessions">
+    <label class="label" for="email">Email</label>
+      <input type="text" name="email" placeholder="email address"><br>
+
+    <label class="label" for="password">Password</label>
+      <input type="text" name="password" placeholder="password"><br>
+
+    <div class="submit"><input type="submit" value="Sign In"></div>
+  </form>
+</div>
+
+<div class="container">
+  <h1>New to Batter? Sign up here.</h1>
+
+  <% if @sign_up_error %>
+    <div class="errors"><%= @sign_up_error %></div>
+  <% end %>
+
+  <form id="sign-up" method="post" action="/users/new">
+    <label class="label" for="name">Name</label>
+      <input type="text" name="user[name]" placeholder="name"><br>
+
+    <label class="label" for="username">Username</label>
+      <input type="text" name="user[username]" placeholder="username"><br>
+
+    <label class="label" for="email">Email</label>
+      <input type="text" name="user[email]" placeholder="email address"><br>
+
+    <label class="label" for="password">Password</label>
+      <input type="text" name="user[password]" placeholder="6 or more characters"><br>
+
+    <div class="submit"><input type="submit" value="Sign up"></div>
+  </form>
+</div>
