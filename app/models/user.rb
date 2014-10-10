@@ -1,8 +1,9 @@
+require 'bcrypt'
 class User < ActiveRecord::Base
   has_many :squeaks
   has_many :user_followings
   #has_many :user_followings, through: :user_followings, class_name: 'User'
-
+	include BCrypt
 
   def who_is_following_me
     UserFollowing.where("user_following_id=?", self.id)
@@ -35,7 +36,14 @@ class User < ActiveRecord::Base
   	who_is_following_me.map {|followee| followee.user_id}
   end
 
+  def password
+    @password ||= Password.new(password_hash)
+  end
 
+  def password=(new_password)
+    @password = Password.create(new_password)
+    self.password_hash = @password
+  end
 
 
 end
