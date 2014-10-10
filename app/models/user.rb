@@ -10,25 +10,23 @@ class User < ActiveRecord::Base
   end
 
   def who_i_am_following
-    UserFollowing.where("user_id=?", self.id)
+    @whatever = UserFollowing.where("user_id=?", self.id)
   end
 
 
   def squeaks_from_who_i_follow
     list_of_squeaks = []
-    # who_is_following_me.each do |followee|
-    # 	User.find(followee.user_id).squeaks.each do |squeak|
-    # 		list_of_squeaks << squeak
-    # 	end
-    # end
+    follow = UserFollowing.where("user_id=?", self.id)
 
-    who_is_following_me.each do |follower|
-    	User.find(follower.user_id).squeaks.each do |squeak|
-    		list_of_squeaks << squeak.content
+    follow.each do |followed|
+    	User.find(followed.user_following_id).squeaks.each do |squeak|
+    		list_of_squeaks << squeak
     	end
-    end
+   	end
 
-    list_of_squeaks#.sort_by(&:create_at).reverse
+    list_of_squeaks.content
+
+    # list_of_squeaks#.sort_by(&:create_at).reverse
   end
 
 
