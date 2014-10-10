@@ -28,7 +28,7 @@ class User < ActiveRecord::Base
     	end
     end
 
-    list_of_squeaks.sort_by(&:create_at).reverse
+    list_of_squeaks#.sort_by(&:create_at).reverse
   end
 
 
