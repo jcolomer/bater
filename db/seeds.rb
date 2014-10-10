@@ -62,3 +62,5 @@ Squeak.create(content: "Blah blah blah blah blah blah", user_id: 6)
 Squeak.create(content: "My first squeak! Yea!", user_id: 6)
 Squeak.create(content: "Blah blah blah blah blah blah", user_id: 6)
 Squeak.create(content: "My first squeak! Yea!", user_id: 6)
+
+

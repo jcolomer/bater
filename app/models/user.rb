@@ -29,7 +29,7 @@ class User < ActiveRecord::Base
     follow = UserFollowing.where("user_id=?", self.id)
 
     follow.each do |followed|
-    	p User.find(followed.user_following_id).squeaks.each do |squeak|
+    	User.find(followed.user_following_id).squeaks.each do |squeak|
     		list_of_squeaks << squeak.content
     	end
    	end
