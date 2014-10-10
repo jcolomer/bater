@@ -28,6 +28,7 @@ end
 post '/users/:id/profile' do
   squeak = Squeak.create(user_id: params[:id], content: params[:content])
   @user = User.find(params[:id])
+  @user_email = @user.email
   erb :profile
 end
 
@@ -47,9 +48,9 @@ get '/sessions/new' do
 end
 
 post '/sessions' do
-  user = User.find_by_email(params[:email])
-  if user && user.password == params[:password]
-    session[:user_id] == user.id
+  @user = User.find_by_email(params[:email])
+  if @user && @user.password == params[:password]
+    session[:user_id] == @user.id
     @user_email = params[:email]
     erb :feed
   else

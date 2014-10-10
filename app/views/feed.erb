@@ -1,6 +1,13 @@
 <%= erb :nav %>
+<div class="container">
+  <div class="gravatar">
+    <% @hash = Digest::MD5.hexdigest(@user_email) %>
+    <img src="http://www.gravatar.com/avatar/<%= @hash %>"/>
+  </div>
 
-<div class="gravatar">
-  <% @hash = Digest::MD5.hexdigest(@user_email) %>
-  <img src="http://www.gravatar.com/avatar/<%= @hash %>"/>
+  <% follower_id_array = @user.squeaks_from_who_i_follow %>
+
+  <% follower_id_array.each do |squeak| %>
+    <%= squeak %></a>
+  <% end %>
 </div>
