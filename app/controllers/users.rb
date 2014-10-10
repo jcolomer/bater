@@ -25,6 +25,13 @@ get '/users/:id/profile' do
   erb :profile
 end
 
+get '/users/:id/feed' do
+  @user = User.find(params[:id])
+  @user_email = @user.email
+  @followers_squeaks = @user.squeaks_from_who_i_follow
+  erb :feed
+end
+
 post '/users/:id/profile' do
   squeak = Squeak.create(user_id: params[:id], content: params[:content])
   @user = User.find(params[:id])
@@ -52,7 +59,7 @@ post '/sessions' do
   if @user && @user.password == params[:password]
     session[:user_id] == @user.id
     @user_email = params[:email]
-    erb :feed
+    redirect "/users/#{@user.id}/feed"
   else
     redirect '/sessions/new?invalid=true'
   end

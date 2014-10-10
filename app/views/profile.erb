@@ -5,10 +5,6 @@
 show your squeaks
 show your profile (name, username, gravatar)
  -->
-<table class="user-info">
-<tr><%= @user.name %> </tr></br>
-<tr>@<%= @user.username %> </tr>
-</table>
 
 <% @hash = Digest::MD5.hexdigest(@user_email) %>
 <% if @hash %>
@@ -17,22 +13,31 @@ show your profile (name, username, gravatar)
 </div>
 <% end %>
 
-<ul>
-<% @user.squeaks.each do |squeak| %>
-<li><%= squeak.content %></li>
-<% end %>
-</ul>
+<div class="profile">
+  <%# if session[:user_id] != @user.id %>
+  <h2>Squeak yourself</h2>
+  <form action="/users/<%= @user.id %>/profile" method="post">
+    <textarea rows="4" cols="50" name="content"></textarea><br>
+    <input type="submit" value="Create">
+  </form>
+  <%# end %>
 
-<%# if session[:user_id] != @user.id %>
-<h2>Squeak yourself</h2>
-<form action="/users/<%= @user.id %>/profile" method="post">
-  <textarea rows="4" cols="50" name="content"></textarea><br>
-  <input type="submit" value="Create">
-</form>
-<%# end %>
+<table class="user-info">
+  <tr><strong><%= @user.name %></strong></tr></br>
+  <tr><strong>@<%= @user.username %></strong></tr>
+</table>
+
+
+  <ul class="list">
+    <% @user.squeaks.each do |squeak| %>
+      <li><%= squeak.content %></li><hr>
+    <% end %>
+  </ul>
+
 
 <a href="/users/<%= @user.id %>/followers">Followers</a>
 <a href="/users/<%= @user.id %>/following">Following</a>
+</div>
 </div>
 
 

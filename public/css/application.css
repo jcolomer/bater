@@ -85,3 +85,12 @@ form.quirks {
   padding-top: 150px;
   text-align: center;
 }
+
+.list {
+  list-style: none;
+}
+
+.profile {
+  text-align: center;
+  list-style: none;
+}

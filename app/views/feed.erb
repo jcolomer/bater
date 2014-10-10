@@ -5,9 +5,10 @@
     <img src="http://www.gravatar.com/avatar/<%= @hash %>"/>
   </div>
 
-  <% follower_id_array = @user.squeaks_from_who_i_follow %>
-
-  <% follower_id_array.each do |squeak| %>
-    <%= squeak %></a>
+  <ul class="list">
+  <% @followers_squeaks.each do |squeak| %>
+    <li align="center"><%= squeak %></li><hr>
   <% end %>
+  </ul>
+
 </div>

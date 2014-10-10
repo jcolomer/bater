@@ -1,11 +1,11 @@
 <nav>
   <ul>
-    <li><a href="/">Home</a></li>
-    <li><a href="/users/<%= params[:id] %>/profile">Profile</a></li>
-    <li><a href="#">Followers</a></li>
-    <li><a href="#">Following</a></li>
+    <li><a href="/users/<%= @user.id %>/feed">Home</a></li>
+    <li><a href="/users/<%= @user.id %>/profile">Profile</a></li>
+    <li><a href="/users/<%= @user.id %>/followers">Followers</a></li>
+    <li><a href="/users/<%= @user.id %>/following">Following</a></li>
     <li><a href="/logout">Signout</a></li>
   </ul>
 
-  <h1>Batter</h1>
+  <h1>Bat-ter</h1>
 </nav>

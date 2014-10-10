@@ -1,10 +1,13 @@
+<%= erb :nav, locals: {id: @user.id} %>
 <div class="container">
-  <p><u><%= @user.name.upcase %>'S FOLLOWERS</u></p>
+  <p><u>Followers</u></p>
 
   <% following_id_array = @user.who_is_following_me %>
 
   <% following_id_array.each do |id| %>
     <% following = User.find(id) %>
-    <a href="/users/<%= id %>/profile"><%= following.name %></a>
+    <ul class="list">
+      <li><a href="/users/<%= id %>/profile"><%= following.name %></a></li>
+    </ul>
   <% end %>
 </div>
