@@ -6,11 +6,21 @@ class User < ActiveRecord::Base
 	include BCrypt
 
   def who_is_following_me
-    UserFollowing.where("user_following_id=?", self.id)
+    list_of_followers = []
+    followers = UserFollowing.where("user_following_id=?", self.id)
+    followers.each do |follower|
+      list_of_followers << User.find(follower.user_id).id
+    end
+    list_of_followers
   end
 
   def who_i_am_following
-    @whatever = UserFollowing.where("user_id=?", self.id)
+    list_of_following = []
+    following = UserFollowing.where("user_id=?", self.id)
+    following.each do |follower|
+      list_of_following << User.find(follower.user_following_id).id
+    end
+    list_of_following
   end
 
 
@@ -19,7 +29,7 @@ class User < ActiveRecord::Base
     follow = UserFollowing.where("user_id=?", self.id)
 
     follow.each do |followed|
-    	User.find(followed.user_following_id).squeaks.each do |squeak|
+    	p User.find(followed.user_following_id).squeaks.each do |squeak|
     		list_of_squeaks << squeak.content
     	end
    	end

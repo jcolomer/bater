@@ -1,0 +1,10 @@
+<div class="container">
+  <p><u><%= @user.name.upcase %> IS FOLLOWING:</u></p>
+
+  <% follower_id_array = @user.who_i_am_following %>
+
+  <% follower_id_array.each do |id| %>
+    <% follower = User.find(id) %>
+    <a href="/users/<%= id %>/profile"><%= follower.name %></a>
+  <% end %>
+</div>
